@@ -7,8 +7,8 @@ import os
 
 # --- CONFIGURE THESE ---
 OAUSTECH_LOGO_PATH = "oaustech_logo.png"  # Place your logo file in the same directory
-#BACKEND_API_URL = "http://127.0.0.1:5000/chat"  # Flask backend endpoint
-BACKEND_API_URL = os.environ.get("BACKEND_API_URL", "http://127.0.0.1:5000/chat")
+BACKEND_API_URL = "https://wallevic.onrender.com/chat"  # Flask backend endpoint
+#BACKEND_API_URL = os.environ.get("BACKEND_API_URL", "http://127.0.0.1:5000/chat")
 
 # --- SIDEBAR NAVIGATION ---
 sidebar_options = [
