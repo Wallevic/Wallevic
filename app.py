@@ -375,5 +375,9 @@ def get_knowledge_base():
         "description": "OAUSTECH-specific information for chatbot responses"
     }), 200
 
+# if __name__ == "__main__":
+#     app.run(host="127.0.0.1", port=5000, debug=True)
+
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5000, debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Use Render-assigned port if available
+    app.run(host="0.0.0.0", port=port, debug=False)  # Disable debug in production

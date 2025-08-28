@@ -3,10 +3,12 @@ from PIL import Image
 import requests
 import json
 import time
+import os
 
 # --- CONFIGURE THESE ---
 OAUSTECH_LOGO_PATH = "oaustech_logo.png"  # Place your logo file in the same directory
-BACKEND_API_URL = "http://127.0.0.1:5000/chat"  # Flask backend endpoint
+#BACKEND_API_URL = "http://127.0.0.1:5000/chat"  # Flask backend endpoint
+BACKEND_API_URL = os.environ.get("BACKEND_API_URL", "http://127.0.0.1:5000/chat")
 
 # --- SIDEBAR NAVIGATION ---
 sidebar_options = [
@@ -170,14 +172,14 @@ with st.sidebar:
     
     st.markdown("---")
     
-    try:
-        response = requests.get("http://localhost:5000/health", timeout=5)
-        if response.status_code == 200:
-            st.success("✅ Backend Connected")
-        else:
-            st.error("❌ Backend Error")
-    except:
-        st.error("❌ Backend Offline")
+    # try:
+    #     response = requests.get("http://localhost:5000/health", timeout=5)
+    #     if response.status_code == 200:
+    #         st.success("✅ Backend Connected")
+    #     else:
+    #         st.error("❌ Backend Error")
+    # except:
+    #     st.error("❌ Backend Offline")
 
 # --- MAIN HEADER ---
 st.markdown("""
@@ -226,7 +228,7 @@ if st.session_state.processing:
                 response = requests.post(
                     BACKEND_API_URL,
                     json={"message": last_message},
-                    timeout=30
+                    timeout=60
                 )
                 if response.status_code == 200:
                     bot_response = response.json().get("response", "Sorry, I didn't understand that.")
